@@ -1,0 +1,54 @@
+<div class="col-xs-4">
+	<img src="images/bee.jpg" class="image-reel""></a>
+</div>
+<div class="col-xs-4">
+	<center><h4>Observation Form</h4></center>
+	<form>
+	  <div class="form-group">
+	    <label>Insect</label>
+	    <input type="text" class="form-control" placeholder="select from dropdown" ng-model="observation.insect"/>
+	  </div>
+	  <div class="form-group">
+	    <label>Street Adress</label>
+	    <input type="text" class="form-control" placeholder="1234 Main St" ng-model="observation.street" />
+	  </div>
+	  <div class="form-group">
+	    <label>State</label>
+	    <input type="text" class="form-control" placeholder="select from dropdown" ng-model="observation.state"/>
+	  </div>
+	  <div class="form-group">
+	    <label>Zip Code</label>
+	    <input type="text" class="form-control" placeholder="12345" ng-model="observation.zip" />
+	  </div>
+	   <div class="form-group">
+	    <label>Latitude</label>
+	    <input type="text" class="form-control" placeholder="look it up" ng-model="observation.latitude" />
+	  </div>
+	   <div class="form-group">
+	    <label>Longitude</label>
+	    <input type="text" class="form-control" placeholder="look it up" ng-model="observation.longitude" />
+	  </div>
+	  <div class="form-group">
+	    <label>Date</label>
+	    <input type="text" class="form-control" placeholder="calendar popup" ng-model="observation.date" />
+	  </div>
+	  <div class="form-group">
+	    <label>Time</label>
+	    <input type="text" class="form-control" placeholder="11:30AM" ng-model="observation.time" />
+	  </div>
+	  <div class="form-group">
+	    <label>Count</label>
+	    <input type="text" class="form-control" placeholder="info" ng-model="observation.count"/>
+	  </div>
+  <button class="btn btn-default" ng-click="saveObservation()">Submit</button>
+  	</form>
+</div>
+<div class="col-xs-4">
+	<div class="link-list">
+		<a ng-href="#/graph"><h5>Compare insect's activity over time</h5></a>
+		<a ng-href="#/graph"><h5>Compare multiple insects' activities over time</h5></a>
+		<a ng-href="#/graph"><h5>Compare insect's activity in two regions</h5></a>
+	</div>	
+</div>
+
+
