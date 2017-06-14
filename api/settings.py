@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
-    'api.apps.ApiConfig',
+    'Bugz',
 ]
 
 MIDDLEWARE = [
@@ -59,7 +59,7 @@ CORS_ORIGIN_WHITELIST = (
 )
 CORS_ALLOW_CREDENTIALS=True
 
-ROOT_URLCONF = 'Bugz.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATES = [
     {
@@ -77,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Bugz.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
