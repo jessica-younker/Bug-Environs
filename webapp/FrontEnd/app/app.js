@@ -43,27 +43,27 @@ app.config(function($routeProvider){
     otherwise("/");
 });
 
-angular.module('Bugz').factory('RootFactory', [
-  "$http",
-  "apiUrl",
-  ($http, apiUrl) => {
-    let secure_token = null;
+// angular.module('Bugz').factory('RootFactory', [
+//   "$http",
+//   "apiUrl",
+//   ($http, apiUrl) => {
+//     let secure_token = null;
 
-    return {
-      getApiRoot () {
-        return $http({
-          url: apiUrl,
-          headers: {
-            'Authorization': "Token " + secure_token
-          }
-        }).then(res => res.data)
-      },
-      setToken (token) {
-        secure_token = token
-      },
-      getToken () {
-        return secure_token;
-      }
-    }
-  }
-]);
+//     return {
+//       getApiRoot () {
+//         return $http({
+//           url: apiUrl,
+//           headers: {
+//             'Authorization': "Token " + secure_token
+//           }
+//         }).then(res => res.data)
+//       },
+//       setToken (token) {
+//         secure_token = token
+//       },
+//       getToken () {
+//         return secure_token;
+//       }
+//     }
+//   }
+// ]);

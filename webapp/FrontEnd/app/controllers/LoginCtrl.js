@@ -1,12 +1,12 @@
 "use strict";
 
-app.controller("LoginCtrl", function($scope, $location, $http, Bugz){
+app.controller("LoginCtrl", function($scope, $location, $http, RootFactory){
 
 		$scope.user = {};
 
 		$scope.login = function() {
 			$http({
-				url: `${Bugz}/api-token-auth/`,
+				url: `${RootFactory.getApiRoot()}/api-token-auth/`,
 				method: "POST",
 				data: {
 				  "username": $scope.user.username,

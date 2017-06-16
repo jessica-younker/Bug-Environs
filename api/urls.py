@@ -6,7 +6,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from Bugz.views import *
 
 router = routers.DefaultRouter()
-router.register(r'insect', insect_view.InsectViewSet)
+# router.register(r'insect', insect_view.InsectViewSet)
 router.register(r'observation', observation_view.ObservationViewSet)
 router.register(r'news', news_view.NewsViewSet)
 

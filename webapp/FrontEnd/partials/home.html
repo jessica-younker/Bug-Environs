@@ -6,19 +6,7 @@
 	<form>
 	  <div class="form-group">
 	    <label>Insect</label>
-	    <input type="text" class="form-control" placeholder="select from dropdown" ng-model="observation.insect"/>
-	  </div>
-	  <div class="form-group">
-	    <label>Street Adress</label>
-	    <input type="text" class="form-control" placeholder="1234 Main St" ng-model="observation.street" />
-	  </div>
-	  <div class="form-group">
-	    <label>State</label>
-	    <input type="text" class="form-control" placeholder="select from dropdown" ng-model="observation.state"/>
-	  </div>
-	  <div class="form-group">
-	    <label>Zip Code</label>
-	    <input type="text" class="form-control" placeholder="12345" ng-model="observation.zip" />
+	    <input type="text" class="form-control" placeholder="select from dropdown" ng-model="observation.insect_name"/>
 	  </div>
 	   <div class="form-group">
 	    <label>Latitude</label>
@@ -38,7 +26,7 @@
 	  </div>
 	  <div class="form-group">
 	    <label>Count</label>
-	    <input type="text" class="form-control" placeholder="info" ng-model="observation.count"/>
+	    <input type="text" class="form-control" placeholder="info" ng-model="observation.population"/>
 	  </div>
   <button class="btn btn-default" ng-click="saveObservation()">Submit</button>
   	</form>

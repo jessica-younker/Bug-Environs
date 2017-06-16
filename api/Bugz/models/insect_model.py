@@ -2,9 +2,9 @@
 bugz api model configuration for insect
 """
 
-from django.db import models
+# from django.db import models
 
 
-class Insect(models.Model):
+# class Insect(models.Model):
 
-    name = models.CharField(max_length=25)
+#     name = models.CharField(max_length=25)

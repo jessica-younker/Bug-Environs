@@ -1,14 +1,14 @@
-from rest_framework import serializers
-from Bugz.models import Insect
+# from rest_framework import serializers
+# from Bugz.models import Insect
 
-"""
-    This class converts the model database table (for non-admins) into 
-    Python data types.
-"""
+# """
+#     This class converts the model database table (for non-admins) into 
+#     Python data types.
+# """
 
-class InsectSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Insect
-        exclude = ()
+# class InsectSerializer(serializers.HyperlinkedModelSerializer):
+#     class Meta:
+#         model = Insect
+#         exclude = ()
 
 
