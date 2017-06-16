@@ -3,28 +3,23 @@
 </div>
 
 <div class="col-xs-4">
-  <center><h3>Login with <a class="btn btn-info" ng-click="loginGoogle()"><i style="font-size:24px" class="fa">&#xf1a0;</i></a></h3>
-  <br>
-  
-  <h4>-OR-</h4>
-  <br>
-  <h4>Enter your info here:</h4>
-  <br>
+  <center><h4>-LOGIN-</h4>
+  <h3>with <a class="btn btn-info" ng-click="loginGoogle()"><i style="font-size:24px" class="fa">&#xf1a0;</i></a> or:</h3>
   <div>
-      <h5>Email:</h5>
-      <input type="text" autofocus="true"  ng-model="account.email">
+      <h5>Username:</h5>
+      <input type="text" autofocus="true"  ng-model="user.username">
   </div>
-  <br>
   <div>
       <h5>Password:</h5>
-      <input type="password" ng-model="account.password">
+      <input type="password" ng-model="user.password">
   </div>
   <br>
   <div>
       <button class="btn btn-default" ng-click="login()">Login</button>
-
-      <button class="btn btn-default" ng-click="register()">Register</button>
-  </div></center>
+  </div>
+  <br>
+  <a href="#/register"><h5>New Here? Register first.</h5></a>
+  </center>
 </div>
 
 <div class="col-xs-4"></div>

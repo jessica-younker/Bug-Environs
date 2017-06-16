@@ -1,40 +1,40 @@
 version: '3'
 services:
-  webapp:
+  bugz_webapp:
     build: webapp
-    container_name: webapp
+    container_name: bugz_webapp
     ports:
       - 8080:8080
     volumes:
       - ./webapp/FrontEnd:/code
     links:
-      - api
-  api:
+      - bugz_api
+  bugz_api:
     build: api
-    container_name: api
+    container_name: bugz_api
     ports:
       - 8000:8000
     volumes:
-      - ./api/Bugz:/code
+      - ./api:/code
     links:
-      - elasticsearch
-  elasticsearch:
+      - bugz_elasticsearch
+  bugz_elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.3.0
-    container_name: elasticsearch
+    container_name: bugz_elasticsearch
     ports:
       - 9200:9200
     volumes:
       - esdata:/usr/share/elasticsearch/data
       - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-  kibana:
+  bugz_kibana:
     image: docker.elastic.co/kibana/kibana:5.3.0
-    container_name: kibana
+    container_name: bugz_kibana
     ports:
       - 5601:5601
     environment:
       SERVER_PORT: 5601
       XPACK_SECURITY_ENABLED: "false"
     links:
-      - elasticsearch
+      - bugz_elasticsearch
 volumes:
   esdata: {}
