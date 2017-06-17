@@ -7,14 +7,14 @@ from Bugz.views import *
 
 router = routers.DefaultRouter()
 # router.register(r'insect', insect_view.InsectViewSet)
-router.register(r'observation', observation_view.ObservationViewSet)
-router.register(r'news', news_view.NewsViewSet)
+# router.register(r'observation', observation_view.ObservationViewSet)
+# router.register(r'news', news_view.NewsViewSet)
 
 urlpatterns = [
     url(r'^login$', LoginViewSet.login_user, name='login'),
     url(r'^logout$', LoginViewSet.logout_user, name='logout'),
     url(r'^register$', register_user, name='register'),
-    # url(r'^observation$', save_observation, name='observation'),
+    url(r'^observation/?$', observation_form_data, name='observation_form_data'),
     # url(r'^news$', print_news, name='news'),
     url(r'^', include(router.urls)),
     url(r'^api-token-auth/', obtain_auth_token),

@@ -5,46 +5,50 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from rest_framework.authtoken.models import Token
-from rest_framework import viewsets
-from Bugz.views.login_view import LoginViewSet
-from Bugz.serializers import *
-from Bugz.models import *
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from Bugz.serializers import ObservationSerializer
 
-from datetime import datetime
+
 from elasticsearch import Elasticsearch
-es = Elasticsearch()
+es = Elasticsearch('bugz_elasticsearch')
 
 import json
 
 # @csrf_exempt
 
-class ObservationViewSet(viewsets.ModelViewSet):
+@api_view(['GET', 'POST'])
+def observation_form_data(request):
     """
-    API endpoint that allows Observations to be viewed or 
-    edited.
+    List all observations, or create a new observation.
     """
-    queryset = Observation.objects.all()
-    serializer_class = ObservationSerializer
+    if request.method == 'GET':
+        observations = []
+        serializer = ObservationSerializer(observations, many=True)
+        return Response(serializer.data)
 
-# elasticsearch
-# save a document
-# doc = {
-#     'author': 'kimchy',
-#     'text': 'Elasticsearch: cool. bonsai cool.',
-#     'timestamp': datetime.now(),
-# }
-# res = es.index(index="test-index", doc_type='tweet', id=1, body=doc)
-# print(res['created'])
+    elif request.method == 'POST':
+        serializer = ObservationSerializer(data=request.data)
+        if serializer.is_valid():
+            print("serializer.data", serializer.data)
+            res = es.index(index="bugz", doc_type='observation', body=serializer.data)
+            print(res['created'])
 
-# # get a document by id
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+# get a document by id
 # res = es.get(index="test-index", doc_type='tweet', id=1)
 # print(res['_source'])
 
-# # wut dat
+# wut dat
 # es.indices.refresh(index="test-index")
 
-# # get all docs in a given index
+# get all docs in a given index
 # res = es.search(index="test-index", body={"query": {"match_all": {}}})
 # print("Got %d Hits:" % res['hits']['total'])
 # for hit in res['hits']['hits']:
-#     print("%(timestamp)s %(author)s: %(text)s" % hit["_source"])
+#     print("%(insect_name)s" % hit["_source"])

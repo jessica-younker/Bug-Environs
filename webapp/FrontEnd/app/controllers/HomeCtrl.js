@@ -3,8 +3,8 @@
 app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataFactory){
     
  // let user = AuthFactory.getUser();
-    DataFactory.getBugData()
-    console.log("being called in home");
+    // DataFactory.getBugData()
+    // console.log("being called in home");
  
 
 
@@ -38,7 +38,7 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
 
         }).then(
             res => $scope.observation = res.data.results,
-            console.log("error")
+            console.log
         )   
         // $location.url("/success");
     };

@@ -8,7 +8,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 
 from rest_framework import viewsets
 from Bugz.serializers import *
-from Bugz.models import *
+# from Bugz.models import *
 
 import json
 
