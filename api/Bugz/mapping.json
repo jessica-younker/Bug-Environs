@@ -1,0 +1,12 @@
+{
+  "mappings": {
+    "observation": {
+      "properties": {
+        "insect_name": { "type": "text" },
+        "population": { "type": "integer" },
+        "location": { "type": "geo_point" },
+        "date": { "type": "date" }
+      }
+    }
+  }
+}

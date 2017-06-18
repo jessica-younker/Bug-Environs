@@ -13,7 +13,7 @@ from Bugz.serializers import ObservationSerializer
 
 from elasticsearch import Elasticsearch
 es = Elasticsearch('bugz_elasticsearch')
-
+import datetime
 import json
 
 # @csrf_exempt
@@ -24,13 +24,23 @@ def observation_form_data(request):
     List all observations, or create a new observation.
     """
     if request.method == 'GET':
-        observation_list = []
-        serializer = ObservationSerializer(data=observation_list, many=True)
         res = es.search(index="bugz", body={"query": {"match_all": {}}})  
         print("Got %d Hits:" % res['hits']['total'])
+        #reformat location and date back to original forms (& add rest of data too)
+        observation_list = []
         for hit in res['hits']['hits']:
-            print("%(insect_name)s" % hit["_source"])
-            observation_list.append(hit["_source"])
+            reformatted_es_data = {}
+            reformatted_es_data["insect_name"] = hit["_source"]["insect_name"]
+            reformatted_es_data["population"] = hit["_source"]["population"]
+            reformatted_es_data["latitude"] = hit["_source"]["location"]["lat"]
+            reformatted_es_data["longitude"] = hit["_source"]["location"]["lon"]
+            datetimer = datetime.datetime.strptime(hit["_source"]["date"], "%Y-%m-%dT%H:%M:%S")
+            reformatted_es_data["date"] = datetimer.date()
+            reformatted_es_data["time"] = datetimer.time()
+            observation_list.append(reformatted_es_data)        
+
+        serializer = ObservationSerializer(data=observation_list, many=True)
+
         if serializer.is_valid():
             return Response(serializer.data)
         else:
@@ -40,18 +50,13 @@ def observation_form_data(request):
     elif request.method == 'POST':
         serializer = ObservationSerializer(data=request.data)
         if serializer.is_valid():
-            print("serializer.data", serializer.data)
-            res = es.index(index="bugz", doc_type='observation', body=serializer.data)
+            fixed_data_dict = {}
+            fixed_data_dict["insect_name"] = serializer.validated_data["insect_name"]
+            fixed_data_dict["population"] = serializer.validated_data["population"]
+            fixed_data_dict["location"] = serializer.make_location()
+            fixed_data_dict["date"] = serializer.make_date()
+            res = es.index(index="bugz", doc_type='observation', body=fixed_data_dict)
             print(res['created'])
 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(fixed_data_dict, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-# get a document by id
-# res = es.get(index="test-index", doc_type='tweet', id=1)
-# print(res['_source'])
-
-# wut dat
-# es.indices.refresh(index="test-index")
-
-# get all docs in a given index
-# res = es.search(index="test-index", body={"query": {"match_all": {}}})
