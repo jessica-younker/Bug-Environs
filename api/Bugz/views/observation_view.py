@@ -24,9 +24,18 @@ def observation_form_data(request):
     List all observations, or create a new observation.
     """
     if request.method == 'GET':
-        observations = []
-        serializer = ObservationSerializer(observations, many=True)
-        return Response(serializer.data)
+        observation_list = []
+        serializer = ObservationSerializer(data=observation_list, many=True)
+        res = es.search(index="bugz", body={"query": {"match_all": {}}})  
+        print("Got %d Hits:" % res['hits']['total'])
+        for hit in res['hits']['hits']:
+            print("%(insect_name)s" % hit["_source"])
+            observation_list.append(hit["_source"])
+        if serializer.is_valid():
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
     elif request.method == 'POST':
         serializer = ObservationSerializer(data=request.data)
@@ -37,9 +46,6 @@ def observation_form_data(request):
 
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 # get a document by id
 # res = es.get(index="test-index", doc_type='tweet', id=1)
 # print(res['_source'])
@@ -49,6 +55,3 @@ def observation_form_data(request):
 
 # get all docs in a given index
 # res = es.search(index="test-index", body={"query": {"match_all": {}}})
-# print("Got %d Hits:" % res['hits']['total'])
-# for hit in res['hits']['hits']:
-#     print("%(insect_name)s" % hit["_source"])
