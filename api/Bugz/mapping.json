@@ -2,7 +2,10 @@
   "mappings": {
     "observation": {
       "properties": {
-        "insect_name": { "type": "text" },
+        "insect_name": { 
+          "type": "string",
+          "index": "not_analyzed"
+        },
         "population": { "type": "integer" },
         "location": { "type": "geo_point" },
         "date": { "type": "date" }

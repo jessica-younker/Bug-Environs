@@ -4,10 +4,10 @@ import datetime
 
 class ObservationSerializer(serializers.Serializer):
     # user = serializers.ForeignKey(User)
-    insect_name = serializers.CharField(max_length=25)
+    insect_name = serializers.CharField(max_length=255)
     population = serializers.IntegerField(min_value=1)
-    latitude = serializers.DecimalField(max_digits=15, decimal_places=10, min_value=0, max_value=90)
-    longitude = serializers.DecimalField(max_digits=15, decimal_places=10, min_value=0, max_value=180)
+    latitude = serializers.DecimalField(max_digits=15, decimal_places=10, min_value=-90, max_value=90)
+    longitude = serializers.DecimalField(max_digits=15, decimal_places=10, min_value=-180, max_value=180)
     date = serializers.DateField()
     time = serializers.TimeField()
 
@@ -15,7 +15,7 @@ class ObservationSerializer(serializers.Serializer):
     def make_location(self):
         location = { 
             "lat": self.validated_data['latitude'],
-            "lon": self.validated_data['latitude']
+            "lon": self.validated_data['longitude']
         }
         return location
 

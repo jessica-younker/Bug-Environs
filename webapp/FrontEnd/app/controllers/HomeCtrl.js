@@ -3,22 +3,9 @@
 app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataFactory){
     
  // let user = AuthFactory.getUser();
-    // DataFactory.getBugData()
-    // console.log("being called in home");
- 
-
-
-
- // CardFactory.getCards(user)
- //    .then(function(cardCollection){
- //        $scope.cards = cardCollection;
- //    });
-
+    
     $scope.observation = {
         insect_name: "",
-        street: "",
-        state: "",
-        zip_code: "",
         latitude: "",
         longitude: "",
         date: "",
@@ -43,6 +30,13 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
         // $location.url("/success");
     };
 
-        
+     DataFactory.getBugData()
+        .then(function(bugArray){
+            bugArray.forEach((bug)=> {
+                $scope.observation = bug;
+                $scope.saveObservation();
+            })           
+    });
+                   
 });
 
