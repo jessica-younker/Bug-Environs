@@ -19,13 +19,12 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
     "Cabbage White", "Convolvulus Hornworm", "Cucumber Beetle", "Flea Beetle", 
     "Katydid",  "Marmorated Stink Bug", "Squash Bug", "Wasp"];
 
-    // $(document).ready(function(){
-    //     $('.datepicker').datepicker({
-    //         format: 'yy-mm-dd'
-    //     })
-    // });
-    // console.log("ob", $observation.date)
-    
+    $(document).ready(function(){
+        $.fn.datepicker.defaults.format = "yyyy-mm-dd";
+        $.fn.datepicker.defaults.autoclose = "true";
+        $('.datepicker').datepicker
+    });
+
     $scope.saveObservation = function(){
         $http({
             url: `${RootFactory.getApiRoot()}/observation/`,
