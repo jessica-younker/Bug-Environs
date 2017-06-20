@@ -1,8 +1,8 @@
 "use strict";
 
-app.factory("DataFactory", function($http, $base64, $httpParamSerializer){
-    //add BugCreds to dependencies if end up needing auth stuff
+//Gets insect data from iNaturalist.org API
 
+app.factory("DataFactory", function($http, $base64, $httpParamSerializer){
     function getBugData() {
         return new Promise((resolve, reject)=>{
             $.ajax({

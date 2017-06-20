@@ -1,16 +1,17 @@
-// "use strict";
+"use strict";
 
-// app.factory("ObservationFactory", ($q, $http) => {
-// //Convert observation form data to JSON
-//     let postObservation = (user) => {
-//         return $q((resolve, reject) => {
-//             $http.post(`${Bugz.databaseURL}/observation.json`)
-            
-//         });
-//     };
+//Gets my insect data from API
 
-//     // let getObservation
+app.factory("ObservationFactory", function($http, $base64, $httpParamSerializer){
+    function getObservations() {
+        return new Promise((resolve, reject)=>{
+            $.ajax({
+                url: "http://localhost:8000/observation",            
+                method: "GET"
+            }).done((bugData)=>{
 
-// return {saveObservation};
-
-// });
+            }).fail((error)=>reject(error));
+        });
+    }
+    return {getObservations};   
+});

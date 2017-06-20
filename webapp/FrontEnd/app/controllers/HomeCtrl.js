@@ -38,9 +38,10 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
             res => $scope.observation = res.data.results,
             console.log
         )   
-        // $location.url("/success");
+        $location.url("/success");
     };
 
+    // Comment in to add more Bug Info from iNaturalist.org
     // DataFactory.getBugData()
     //     .then(function(bugArray){
     //         bugArray.forEach((bug)=> {

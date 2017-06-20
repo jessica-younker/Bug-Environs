@@ -16,25 +16,21 @@
 	    <label>Longitude</label>
 	    <input type="text" class="form-control" placeholder="-85.77" ng-model="observation.longitude" />
 	  </div>
-
-	  <div>
-		  <div class="form-group">
+	  <div class="form-group">
+		  <label>Date</label>
 		   	<div class="input-group date" data-provide="datepicker">
-	  			<input type="text" class="datepicker" ng-model="observation.date" />
-	  			<div class="input-group-addon">
-	      			<span class="glyphicon glyphicon-th"></span>
+	  			<input type="text" class="form-control datepicker" ng-model="observation.date" />
+	  			<div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
 	  			</div>
 		   	</div>
-		  </div>
 	  </div>
-
 	  <div class="form-group">
 	    <label>Time</label>
 	    <input type="text" class="form-control" placeholder="11:30AM" ng-model="observation.time" />
 	  </div>
 	  <div class="form-group">
 	    <label>Count</label>
-	    <input type="text" class="form-control" placeholder="estimate" ng-model="observation.population"/>
+	    <input type="text" class="form-control" placeholder="estimate # of bugz" ng-model="observation.population"/>
 	  </div>
   <button class="btn btn-default" ng-click="saveObservation()">Submit</button>
   	</form>
@@ -42,9 +38,8 @@
 
 <div class="col-xs-4">
 	<div class="link-list">
-		<a ng-href="#/graph"><h5>Compare insect's activity over time</h5></a>
-		<a ng-href="#/graph"><h5>Compare multiple insects' activities over time</h5></a>
-		<a ng-href="#/graph"><h5>Compare insect's activity in two regions</h5></a>
+		<a ng-href="#/graph"><h5>Compare multiple insects' populations throughout the year</h5></a>
+		<a ng-href="#/graph"><h5>Compare insect activity in two regions</h5></a>
 	</div>	
 </div>
 
