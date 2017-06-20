@@ -6,31 +6,43 @@
 	<form>
 	  <div class="form-group">
 	    <label>Insect</label>
-	    <input type="text" class="form-control" placeholder="select from dropdown" ng-model="observation.insect_name"/>
+	    <select type="text" class="form-control" placeholder="select from dropdown" ng-model="observation.insect_name" ng-options="x for x in insect_names"/>
 	  </div>
 	   <div class="form-group">
-	    <label>Latitude</label>
-	    <input type="text" class="form-control" placeholder="look it up" ng-model="observation.latitude" />
+	    <label>Latitude <a href="http://www.latlong.net/convert-address-to-lat-long.html">Find your coordinates</a></label>
+	    <input type="text" class="form-control" placeholder="36.1234" ng-model="observation.latitude" />
 	  </div>
-	   <div class="form-group">
+	  <div class="form-group">
 	    <label>Longitude</label>
-	    <input type="text" class="form-control" placeholder="look it up" ng-model="observation.longitude" />
+	    <input type="text" class="form-control" placeholder="-85.77" ng-model="observation.longitude" />
 	  </div>
 	  <div class="form-group">
 	    <label>Date</label>
-	    <input type="text" class="form-control" placeholder="calendar popup" ng-model="observation.date" />
+	    <input type="text" class="form-control" placeholder="YYYY-MM-DD" ng-model="observation.date" />
 	  </div>
+	  <!-- <div>
+		  <div class="form-group">
+		   	<div class="input-group date" data-provide="datepicker">
+	  			<input type="text" class="form-control" ng-model="observation.date"/>
+	  				<div class="input-group-addon">
+	      			<span class="glyphicon glyphicon-th"></span>
+	  				</div>
+		   	</div>
+		  </div>
+	  </div> -->
+
 	  <div class="form-group">
 	    <label>Time</label>
 	    <input type="text" class="form-control" placeholder="11:30AM" ng-model="observation.time" />
 	  </div>
 	  <div class="form-group">
 	    <label>Count</label>
-	    <input type="text" class="form-control" placeholder="info" ng-model="observation.population"/>
+	    <input type="text" class="form-control" placeholder="estimate" ng-model="observation.population"/>
 	  </div>
   <button class="btn btn-default" ng-click="saveObservation()">Submit</button>
   	</form>
 </div>
+
 <div class="col-xs-4">
 	<div class="link-list">
 		<a ng-href="#/graph"><h5>Compare insect's activity over time</h5></a>

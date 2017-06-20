@@ -14,6 +14,18 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
         // user: 
      };
 
+    
+    $scope.insect_names = ["Aphid", "Asian Lady Beetle", "Assassin Bug", "Bee", 
+    "Cabbage White", "Convolvulus Hornworm", "Cucumber Beetle", "Flea Beetle", 
+    "Katydid",  "Marmorated Stink Bug", "Squash Bug", "Wasp"];
+
+    // $(document).ready(function(){
+    //     $('.datepicker').datepicker({
+    //         format: 'yy-mm-dd'
+    //     })
+    // });
+    // console.log("ob", $observation.date)
+    
     $scope.saveObservation = function(){
         $http({
             url: `${RootFactory.getApiRoot()}/observation/`,
@@ -30,13 +42,13 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
         // $location.url("/success");
     };
 
-     DataFactory.getBugData()
-        .then(function(bugArray){
-            bugArray.forEach((bug)=> {
-                $scope.observation = bug;
-                $scope.saveObservation();
-            })           
-    });
+    // DataFactory.getBugData()
+    //     .then(function(bugArray){
+    //         bugArray.forEach((bug)=> {
+    //             $scope.observation = bug;
+    //             $scope.saveObservation();
+    //         })           
+    // });
                    
 });
 
