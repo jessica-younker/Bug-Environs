@@ -24,8 +24,9 @@ def observation_form_data(request):
     List all observations, or create a new observation.
     """
     if request.method == 'GET':
-        res = es.search(index="bugz", body={"query": {"match_all": {}}})  
+        res = es.search(index="bugz", body={"query": {"match_all": {}}}, size=10000, from_=0)  
         print("Got %d Hits:" % res['hits']['total'])
+        
         #reformat location and date back to original forms (& add rest of data too)
         observation_list = []
         for hit in res['hits']['hits']:
@@ -40,7 +41,6 @@ def observation_form_data(request):
             observation_list.append(reformatted_es_data)        
 
         serializer = ObservationSerializer(data=observation_list, many=True)
-
         if serializer.is_valid():
             return Response(serializer.data)
         else:
