@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("Bugz", ["ngRoute", "base64"])
+var app = angular.module("Bugz", ["ngRoute", "base64", "nvd3", "nvd3ChartDirectives"])
     .constant('apiUrl', "http://localhost:8000");
 
 let isAuth = (AuthFactory) => new Promise ( (resolve, reject) => {
@@ -39,6 +39,10 @@ app.config(function($routeProvider){
     when("/success", {
         templateUrl: "partials/success.html",
         controller: "SuccessCtrl"
+    }).
+    when("/count", {
+        templateUrl: "partials/count.html",
+        controller: "CountCtrl"
     }).
     otherwise("/");
 });
