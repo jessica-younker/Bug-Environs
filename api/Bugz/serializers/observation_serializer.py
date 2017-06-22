@@ -3,6 +3,10 @@ from rest_framework import serializers
 import datetime
 
 class ObservationSerializer(serializers.Serializer):
+    """
+    Serialize form data from webapp and alter some data (location and date) 
+    for Elasticsearch.
+    """
     # user = serializers.ForeignKey(User)
     insect_name = serializers.CharField(max_length=255)
     population = serializers.IntegerField(min_value=1)

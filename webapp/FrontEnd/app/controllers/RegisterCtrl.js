@@ -1,6 +1,6 @@
 "use strict";
 
-app.controller("RegisterCtrl", function($scope, $location, $http, Bugz){
+app.controller("RegisterCtrl", function($scope, $location, $http, RootFactory){
 
         $scope.user = {};
 

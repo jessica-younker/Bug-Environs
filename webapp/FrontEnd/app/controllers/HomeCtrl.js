@@ -2,7 +2,7 @@
 
 app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataFactory){
     
- // let user = AuthFactory.getUser();
+    // let user = AuthFactory.getUser();
     
     $scope.observation = {
         insect_name: "",
@@ -14,11 +14,12 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
         // user: 
      };
 
-    
+    // insect choices for dropdown
     $scope.insect_names = ["Aphid", "Asian Lady Beetle", "Assassin Bug", "Bee", 
     "Cabbage White", "Convolvulus Hornworm", "Cucumber Beetle", "Flea Beetle", 
     "Katydid",  "Marmorated Stink Bug", "Squash Bug", "Wasp"];
 
+    // popup calendar with properly formatted date
     $(document).ready(function(){
         $.fn.datepicker.defaults.format = "yyyy-mm-dd";
         $.fn.datepicker.defaults.autoclose = "true";
@@ -40,7 +41,6 @@ app.controller("HomeCtrl", function($scope, $http, $location, RootFactory, DataF
         )   
         $location.url("/success");
     };
-
     // Comment in to add more Bug Info from iNaturalist.org
     // DataFactory.getBugData()
     //     .then(function(bugArray){

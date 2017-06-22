@@ -2,71 +2,71 @@
 
 app.controller("GraphCtrl", function($scope, $window, ObservationFactory, RootFactory){
     //get data from igotbuz api
-    console.log('help')
-    ObservationFactory.getObservations()
-        .then(function(){
-            $http({
-                url: `${RootFactory.getApiRoot()}/observation/`,
-                method: "GET",
-                headers: {
-                  'Authorization': "Token " + RootFactory.getToken(),
-                },
-                data: $scope.observation
-            }).then({
-                d3.json($scope.observation)
-            }).then(
-                res => $scope.observation = res.data.results,
-            )   
-        });
+//     console.log('help')
+//     ObservationFactory.getObservations()
+//         .then(function(){
+//             $http({
+//                 url: `${RootFactory.getApiRoot()}/observation/`,
+//                 method: "GET",
+//                 headers: {
+//                   'Authorization': "Token " + RootFactory.getToken(),
+//                 },
+//                 data: $scope.observation
+//             }).then({
+//                 d3.json($scope.observation)
+//             }).then(
+//                 res => $scope.observation = res.data.results,
+//             )   
+//         });
 
         
 
-//NVD3 Graph   
-    $scope.options = {
-        chart: {
-            type: 'cumulativeLineChart',
-            height: 450,
-            margin : {
-                top: 20,
-                right: 20,
-                bottom: 50,
-                left: 65
-            },
-            x: function(d){ return d[0]; },
-            y: function(d){ return d[1]/100; },
-            average: function(d) { return d.mean/100; },
+// //NVD3 Graph   
+//     $scope.options = {
+//         chart: {
+//             type: 'cumulativeLineChart',
+//             height: 450,
+//             margin : {
+//                 top: 20,
+//                 right: 20,
+//                 bottom: 50,
+//                 left: 65
+//             },
+//             x: function(d){ return d[0]; },
+//             y: function(d){ return d[1]/100; },
+//             average: function(d) { return d.mean/100; },
 
-            color: d3.scale.category10().range(),
-            duration: 300,
-            useInteractiveGuideline: true,
-            clipVoronoi: false,
+//             color: d3.scale.category10().range(),
+//             duration: 300,
+//             useInteractiveGuideline: true,
+//             clipVoronoi: false,
 
-            xAxis: {
-                axisLabel: 'Year',
-                tickFormat: function(d) {
-                    return d3.time.format('%y/%m/%d')(new Date(d))
-                },
-                showMaxMin: false,
-                staggerLabels: true
-            },
+//             xAxis: {
+//                 axisLabel: 'Year',
+//                 tickFormat: function(d) {
+//                     return d3.time.format('%y/%m/%d')(new Date(d))
+//                 },
+//                 showMaxMin: false,
+//                 staggerLabels: true
+//             },
 
-            yAxis: {
-                axisLabel: 'Population',
-                tickFormat: function(d){
-                    return d3.format(',500')(d);
-                },
-                axisLabelDistance: 0
-            }
-        }
-    };
-    $scope.data = [];
-    $scope.observation.forEach(observation)=> {
+//             yAxis: {
+//                 axisLabel: 'Population',
+//                 tickFormat: function(d){
+//                     return d3.format(',500')(d);
+//                 },
+//                 axisLabelDistance: 0
+//             }
+//         }
+//     };
+//     $scope.data = [];
+//     $scope.observation.forEach(observation)=> {
 
-          insect_name: "insect_name",
-          values: "population"
-    };
-    $scope.data.push($scope.observation)
-    console.log("scope.data", $scope.data);
+//           insect_name: "insect_name",
+//           values: "population"
+//     };
+//     $scope.data.push($scope.observation)
+//     console.log("scope.data", $scope.data);
   
 
 

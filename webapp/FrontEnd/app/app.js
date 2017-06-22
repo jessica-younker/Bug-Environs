@@ -1,6 +1,6 @@
 "use strict";
 
-var app = angular.module("Bugz", ["ngRoute", "base64", "nvd3", "nvd3ChartDirectives"])
+var app = angular.module("Bugz", ["ngRoute", "base64", "nvd3"])
     .constant('apiUrl', "http://localhost:8000");
 
 let isAuth = (AuthFactory) => new Promise ( (resolve, reject) => {
@@ -46,28 +46,3 @@ app.config(function($routeProvider){
     }).
     otherwise("/");
 });
-
-// angular.module('Bugz').factory('RootFactory', [
-//   "$http",
-//   "apiUrl",
-//   ($http, apiUrl) => {
-//     let secure_token = null;
-
-//     return {
-//       getApiRoot () {
-//         return $http({
-//           url: apiUrl,
-//           headers: {
-//             'Authorization': "Token " + secure_token
-//           }
-//         }).then(res => res.data)
-//       },
-//       setToken (token) {
-//         secure_token = token
-//       },
-//       getToken () {
-//         return secure_token;
-//       }
-//     }
-//   }
-// ]);
