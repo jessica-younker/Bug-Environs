@@ -1,5 +1,5 @@
 # Bug-Environs
-Web application using Augluar and DjangoREST Framework with ElasticSearch and Kibana built over two weeks for my backend capstone project at Nashville Software School.
+Web application using Angular and DjangoREST Framework with ElasticSearch and Kibana built over a week and a half for my backend capstone project at Nashville Software School.
 
 ## To use:
 
